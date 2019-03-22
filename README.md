@@ -1,6 +1,11 @@
 # Activity Graphs 1
 
 ### Team
-[Arthur Diniz](https://github.com/arthurbdiniz)
-[Vinicius Ferreira](https://github.com/ViniciusBernardo)
+
+| Name  | Github  | Email  |  
+|--------------------|---|---|
+| Arthur Diniz       | [@arthurbdiniz](https://github.com/arthurbdiniz)  | me@arthurbdiniz.com  |  
+| Vinicius Ferreira  | [@ViniciusBernardo](https://github.com/ViniciusBernardo)  | vfbdelima@gmail.com  |    
+
+
 
