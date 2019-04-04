@@ -51,17 +51,17 @@
       edges = [];
 
       nodes.push({id: 0, label: 'Roteador', image: DIR + 'router.png', shape: 'image', visited: false, links: [ 1, 3 ]});
-      nodes.push({id: 1, label: 'Roteador', image: DIR + 'router.png', shape: 'image', visited: false});
-      nodes.push({id: 2, label: 'Switch 1', image: DIR + 'switch.png' , shape: 'image', visited: false});
-      nodes.push({id: 3, label: 'Modem 1', image: DIR + 'wifi-router.png', shape: 'image', visited: false});
-      nodes.push({id: 4, label: 'Switch 2 192.168.0.5', image: DIR + 'switch.png' , shape: 'image', visited: false, links: [ 5, 12, 13 ] });
+      nodes.push({id: 1, label: 'Roteador', image: DIR + 'router.png', shape: 'image', visited: false, links: [ 0, 5 ]});
+      nodes.push({id: 2, label: 'Switch 1', image: DIR + 'switch.png' , shape: 'image', visited: false, links: [ 3, 6, 7, 8, 9, 10 ]});
+      nodes.push({id: 3, label: 'Modem 1 192.168.100.0', image: DIR + 'wifi-router.png', shape: 'image', visited: false, links: [ 0, 2, 11 ]});
+      nodes.push({id: 4, label: 'Switch 2', image: DIR + 'switch.png' , shape: 'image', visited: false, links: [ 5, 12, 13 ] });
       nodes.push({id: 5, label: 'Modem 2 192.168.0.0', image: DIR + 'wifi-router.png', shape: 'image', visited: false, links: [ 1, 4 ]});
-      nodes.push({id: 6, label: 'Computer', image: DIR + 'computer.png', shape: 'image'});
-      nodes.push({id: 7, label: 'Computer', image: DIR + 'computer.png', shape: 'image'});
-      nodes.push({id: 8, label: 'Computer', image: DIR + 'computer.png', shape: 'image'});
-      nodes.push({id: 9, label: 'Computer', image: DIR + 'computer.png', shape: 'image'});
-      nodes.push({id: 10, label: 'Printer', image: DIR + 'print.png', shape: 'image'});
-      nodes.push({id: 11, label: 'Laptop', image: DIR + 'laptop.png', shape: 'image'});
+      nodes.push({id: 6, label: 'Computer 192.168.100.220', image: DIR + 'computer.png', shape: 'image', links: [ 2 ]});
+      nodes.push({id: 7, label: 'Computer 192.168.100.192', image: DIR + 'computer.png', shape: 'image', links: [ 2 ]});
+      nodes.push({id: 8, label: 'Computer 192.168.100.73', image: DIR + 'computer.png', shape: 'image', links: [ 2 ]});
+      nodes.push({id: 9, label: 'Computer 192.168.100.167', image: DIR + 'computer.png', shape: 'image', links: [ 2 ]});
+      nodes.push({id: 10, label: 'Printer 192.168.100.82', image: DIR + 'print.png', shape: 'image', links: [ 2 ]});
+      nodes.push({id: 11, label: 'Laptop 192.168.100.243', image: DIR + 'laptop.png', shape: 'image', links: [ 3 ]});
       nodes.push({id: 12, label: 'Printer 192.168.0.158', image: DIR + 'print.png', shape: 'image', links: [ 4 ]});
       nodes.push({id: 13, label: 'Computer 192.168.0.29', image: DIR + 'computer.png', shape: 'image', links: [ 4 ]});
 
@@ -102,7 +102,7 @@
       network.on("click", function (params) {
         params.event = "[original event]";
         document.getElementById('eventSpan').innerHTML = '<h2>Click event:</h2>' + JSON.stringify(params, null, 4);
-        console.log('click event, getNodeAt returns: ' + this.getNodeAt(params.pointer.DOM));
+        // console.log('click event, getNodeAt returns: ' + this.getNodeAt(params.pointer.DOM));
       });
       network.on("doubleClick", function (params) {
           params.event = "[original event]";
@@ -115,8 +115,8 @@
       network.on("dragStart", function (params) {
           // There's no point in displaying this event on screen, it gets immediately overwritten
           params.event = "[original event]";
-          console.log('dragStart Event:', params);
-          console.log('dragStart event, getNodeAt returns: ' + this.getNodeAt(params.pointer.DOM));
+          // console.log('dragStart Event:', params);
+          // console.log('dragStart event, getNodeAt returns: ' + this.getNodeAt(params.pointer.DOM));
       });
       network.on("dragging", function (params) {
           params.event = "[original event]";
@@ -125,8 +125,8 @@
       network.on("dragEnd", function (params) {
           params.event = "[original event]";
           document.getElementById('eventSpan').innerHTML = '<h2>dragEnd event:</h2>' + JSON.stringify(params, null, 4);
-          console.log('dragEnd Event:', params);
-          console.log('dragEnd event, getNodeAt returns: ' + this.getNodeAt(params.pointer.DOM));
+          // console.log('dragEnd Event:', params);
+          // console.log('dragEnd event, getNodeAt returns: ' + this.getNodeAt(params.pointer.DOM));
       });
       network.on("zoom", function (params) {
           document.getElementById('eventSpan').innerHTML = '<h2>zoom event:</h2>' + JSON.stringify(params, null, 4);
@@ -135,34 +135,34 @@
           document.getElementById('eventSpan').innerHTML = '<h2>showPopup event: </h2>' + JSON.stringify(params, null, 4);
       });
       network.on("hidePopup", function () {
-          console.log('hidePopup Event');
+          // console.log('hidePopup Event');
       });
       network.on("select", function (params) {
-          console.log('select Event:', params);
+          // console.log('select Event:', params);
       });
       network.on("selectNode", function (params) {
-          console.log('selectNode Event:', params);
+          // console.log('selectNode Event:', params);
       });
       network.on("selectEdge", function (params) {
-          console.log('selectEdge Event:', params);
+          // console.log('selectEdge Event:', params);
       });
       network.on("deselectNode", function (params) {
-          console.log('deselectNode Event:', params);
+          // console.log('deselectNode Event:', params);
       });
       network.on("deselectEdge", function (params) {
-          console.log('deselectEdge Event:', params);
+          // console.log('deselectEdge Event:', params);
       });
       network.on("hoverNode", function (params) {
-          console.log('hoverNode Event:', params);
+          // console.log('hoverNode Event:', params);
       });
       network.on("hoverEdge", function (params) {
-          console.log('hoverEdge Event:', params);
+          // console.log('hoverEdge Event:', params);
       });
       network.on("blurNode", function (params) {
-          console.log('blurNode Event:', params);
+          // console.log('blurNode Event:', params);
       });
       network.on("blurEdge", function (params) {
-          console.log('blurEdge Event:', params);
+          // console.log('blurEdge Event:', params);
       });
 
 
@@ -170,8 +170,8 @@
         var listToExplore = [ start ];
 
         nodes[ start ].visited = true;
-        console.log('Pacote enviado de ' + nodes[ start ].label)
         console.log('Destino do Pacote ' + nodes[ end ].label)
+        console.log('Pacote enviado de ' + nodes[ start ].label)
 
         while ( listToExplore.length > 0 ) {
           var nodeIndex = listToExplore.shift();
@@ -193,8 +193,6 @@
           );
         }
       };
-
-      bfs( 12 , 5 );
     }
     
 
