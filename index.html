@@ -9,6 +9,13 @@
       height: 500px;
       border: 1px solid lightgray;
     }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+      
   </style>
 
   <script type="text/javascript" src="dist/vis.js"></script>
@@ -166,10 +173,28 @@
       });
     }
 
-    function bfs( start , end) {
+    function formatElement(text) {
+      var node = document.createElement("LI");                
+      var textnode = document.createTextNode(text);  
+      node.appendChild(textnode);  
+      return node;
+    }
+
+    function bfs() {
+        var deliver = false
+        var start = document.getElementById("start").value;
+        var end = document.getElementById("end").value;
+
         var listToExplore = [ start ];
 
         nodes[ start ].visited = true;
+
+        var endNode = formatElement('Destino do Pacote '  + nodes[ end ].label)
+        document.getElementById('eventBfs').appendChild(endNode);
+        
+        var startNode = formatElement('Pacote enviado de '  + nodes[ start ].label)
+        document.getElementById('eventBfs').appendChild(startNode);
+
         console.log('Destino do Pacote ' + nodes[ end ].label)
         console.log('Pacote enviado de ' + nodes[ start ].label)
 
@@ -177,11 +202,18 @@
           var nodeIndex = listToExplore.shift();
           nodes[ nodeIndex ].links.forEach(
             function( childIndex ) {
-
-              console.log(nodes[ childIndex ].label)
+ 
+              if(!deliver) {
+                var childNode = formatElement(nodes[ childIndex ].label)
+                document.getElementById('eventBfs').appendChild(childNode);
+                console.log(nodes[ childIndex ].label)
+              }
 
               if(childIndex == end) {
+                var deliverMessage = formatElement('Pacote entregue')
+                document.getElementById('eventBfs').appendChild(deliverMessage);
                 console.log('Pacote entregue');
+                deliver = true
                 return
               }
 
@@ -203,6 +235,18 @@
   <p>
     Network Map
   </p>
+  <div>
+    <form id="frm" onsubmit="return false">
+      <div>
+        Enter start node ID: <input id="start" type="text" size="" value="">
+      </div>
+      <div>
+        Enter end node ID: <input id="end" type="text" size="" value="">
+      </div>
+      <input type="submit" value="Submit" onclick="bfs()">
+    </form>
+    <pre id="eventBfs"></pre>
+  </div>
   <div id="mynetwork"></div>
   <pre id="eventSpan"></pre>
 
